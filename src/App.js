@@ -1,23 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import React,{useState} from "react";
 
-function App() {
+function App(){
+
+  const [num,setNum]=useState("");
+  const [result,setResult] = useState("");
+
+  function checkEvenOdd(){
+    if (num % 2 == 0){
+      setResult("Even Number");
+    }
+    else{
+      setResult("Odd number");
+    }
+  }
+
+  function calculateexpr(){
+    const a = Number(num);
+    const b = a - 15;
+    const res = ((a+b)/(a-b))*(a+b);
+    setResult(res);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>My Calculator</h1>
+
+      <input 
+        type="number" 
+        value={num} 
+        onChange={(e)=>setNum(e.target.value)}
+      />
+
+      <br/><br/>
+
+      <button onClick={checkEvenOdd}>Even_Odd</button>
+      <button onClick={calculateexpr}>Expr</button>
+
+      <h3>Result: {result}</h3>
     </div>
   );
 }
